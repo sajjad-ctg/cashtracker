@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Cash Tracker</title>
+<meta name="description" content="Cash Tracker stores everything locally on your device. No account, no tracking, no data collection.">
+<meta name="theme-color" content="#0d1015">
+<link rel="icon" href="./icon-192.png">
+<style>
+  :root{
+    --bg:#0d1015; --surface:#14181f; --border:#262d38;
+    --text:#e6e9ee; --muted:#939cab; --accent:#ef7622;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font:16px/1.65 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:32px 20px 72px}
+  header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+  .logo{width:44px;height:44px;border-radius:12px;flex:none}
+  h1{font-size:26px;margin:0;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:14px;margin:2px 0 0}
+  h2{font-size:18px;margin:30px 0 8px;letter-spacing:-.01em}
+  p,li{color:#c8ced8}
+  ul{padding-left:20px}
+  li{margin:5px 0}
+  .badge{display:inline-block;margin-top:14px;padding:6px 12px;border-radius:999px;
+    background:rgba(239,118,34,.14);color:var(--accent);font-weight:600;font-size:13px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-top:18px}
+  a{color:var(--accent)}
+  footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--border);color:var(--muted);font-size:13.5px}
+  code{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1px 6px;font-size:13px}
+  @media (prefers-color-scheme: light){
+    :root{--bg:#f5f6f8;--surface:#fff;--border:#e2e5ea;--text:#13171d;--muted:#6b7480}
+    p,li{color:#39424e}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+    <circle cx="32" cy="32" r="30.5" fill="#ef7622"/>
+    <circle cx="32" cy="32" r="26.8" fill="none" stroke="#fff" stroke-width="2.8"/>
+    <rect x="16.5" y="20" width="31" height="24" rx="5.5" fill="#0d0d0d"/>
+    <path d="M19.5 23.5h5.6a5.6 5.6 0 0 1-5.6 5.6zM44.5 23.5h-5.6a5.6 5.6 0 0 0 5.6 5.6zM19.5 40.5h5.6a5.6 5.6 0 0 0-5.6-5.6zM44.5 40.5h-5.6a5.6 5.6 0 0 1 5.6-5.6z" fill="#ef7622"/>
+    <circle cx="32" cy="32" r="6.2" fill="#ef7622"/>
+    <path d="M29.9 29.2l3.2-1.8h2v10h-2.6v-7.2h-2.6z" fill="#0d0d0d"/>
+  </svg>
+  <div>
+    <h1>Privacy Policy</h1>
+    <p class="sub">Cash Tracker &middot; by MSKCTG &middot; last updated 11 November 2026</p>
+  </div>
+</header>
+
+<div class="badge">No data collection &middot; No tracking &middot; No ads</div>
+
+<p>Cash Tracker is a completely offline app. This policy explains, in plain words, what
+the app does with your information — which is: <strong>nothing</strong>.</p>
+
+<h2>What the app stores</h2>
+<p>The entries you create (amount, date, category, the optional &ldquo;for whom&rdquo; name and
+note) plus your preferences (theme, currency, categories, week start) are stored
+<strong>only on your own device</strong>, inside the app's private storage space
+(<code>localStorage</code>). They are never uploaded anywhere.</p>
+
+<h2>What the app never does</h2>
+<ul>
+  <li>No account, no sign-in, no email address, no phone number.</li>
+  <li>No analytics, no telemetry, no crash reporting, no advertising SDKs.</li>
+  <li>No cookies and no tracking identifiers.</li>
+  <li>No network requests at all — the app does not even request internet access.</li>
+  <li>No access to your contacts, photos, location, camera or microphone.</li>
+</ul>
+
+<h2>Permissions</h2>
+<p>The Android app requests one permission, limited to devices running Android 9 or older:
+<code>WRITE_EXTERNAL_STORAGE</code>. It is used solely so the files <em>you</em> export
+(PDF report, CSV, JSON backup) can be written into your <strong>Downloads</strong> folder.
+On Android 10 and newer no permission is required at all — the app writes through the
+system media store. The app never reads files you did not export yourself.</p>
+
+<h2>Data you export</h2>
+<p>Reports, CSV files and JSON backups are written to your device's storage at your request.
+Once a file is exported it is an ordinary file that you own: you can open it, share it, or
+delete it. The app has no knowledge of what happens to it afterwards.</p>
+
+<h2>Deleting your data</h2>
+<p>You can delete everything at any time with <strong>Settings &rarr; Data &rarr; Clear all
+data</strong>. Uninstalling the app also removes its local storage. Because nothing is
+stored on our servers, there is nothing else to delete.</p>
+
+<h2>Backups</h2>
+<p>If you want to move your entries to another device, export a JSON backup and import it
+there. The backup file contains your entries in plain text — treat it like any other
+personal document.</p>
+
+<h2>Open source</h2>
+<p>The full source code is available on GitHub, so the behaviour described here can be
+verified by anyone:
+<a href="https://github.com/sajjad-ctg/cashtracker">github.com/sajjad-ctg/cashtracker</a>.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy? Open an issue on the
+<a href="https://github.com/sajjad-ctg/cashtracker/issues">GitHub issue tracker</a>.</p>
+
+<footer>
+  Cash Tracker &middot; Fully Offline &middot; by MSKCTG<br>
+  This policy applies to the Android app and the web version of Cash Tracker.
+</footer>
+
+</div>
+</body>
+</html>

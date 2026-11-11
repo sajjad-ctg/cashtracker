@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>shot harness</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #0d1015; overflow: hidden; }
+  #stage { transform-origin: top left; }
+  iframe { display: block; border: 0; background: #0d1015; }
+</style>
+</head>
+<body>
+<script>
+  // ?w=360&h=640&scale=1.7&route=%23/dashboard
+  var q = new URLSearchParams(location.search);
+  var w = parseInt(q.get('w') || '360', 10);
+  var h = parseInt(q.get('h') || '640', 10);
+  var scale = parseFloat(q.get('scale') || '1');
+  var route = q.get('route') || '#/dashboard';
+  var seed = q.get('seed') === '1';
+
+  var stage = document.createElement('div');
+  stage.id = 'stage';
+  stage.style.width = (w * scale) + 'px';
+  stage.style.height = (h * scale) + 'px';
+  stage.style.transform = 'scale(' + scale + ')';
+
+  var f = document.createElement('iframe');
+  f.width = w; f.height = h;
+  f.src = '/dist/cashtracker.html' + route;
+  stage.appendChild(f);
+  document.body.appendChild(stage);
+  document.body.style.width = (w * scale) + 'px';
+  document.body.style.height = (h * scale) + 'px';
+
+  // demo data for the store screenshots
+  var DEMO = {
+    version: 1,
+    settings: { theme: 'dark', currency: 'USD', weekStart: 'mon', title: 'Cash Tracker', owner: '' },
+    categories: {
+      expense: [
+        { id: 'c-food', name: 'Food & Drinks', color: '#ea580c', emoji: '🍔' },
+        { id: 'c-transport', name: 'Transport', color: '#0891b2', emoji: '🚗' },
+        { id: 'c-bills', name: 'Bills & Utilities', color: '#7c3aed', emoji: '🏠' },
+        { id: 'c-shop', name: 'Shopping', color: '#db2777', emoji: '🛒' },
+        { id: 'c-health', name: 'Health', color: '#dc2626', emoji: '💊' },
+        { id: 'c-fun', name: 'Entertainment', color: '#d97706', emoji: '🎬' },
+        { id: 'c-other', name: 'Other', color: '#6b7480', emoji: '' }
+      ],
+      income: [
+        { id: 'i-salary', name: 'Salary', color: '#16a34a', emoji: '💼' },
+        { id: 'i-free', name: 'Freelance', color: '#2563eb', emoji: '💻' },
+        { id: 'i-gift', name: 'Gift', color: '#db2777', emoji: '🎁' }
+      ]
+    },
+    people: [{ id: 'p-family', name: 'Family' }, { id: 'p-self', name: 'Self' }, { id: 'p-home', name: 'Home' }],
+    txns: []
+  };
+
+  function add(type, amount, date, cat, person, note) {
+    DEMO.txns.push({
+      id: 'demo-' + DEMO.txns.length, type: type, amountCents: Math.round(amount * 100),
+      date: date, categoryId: cat, personId: person, note: note, createdAt: Date.now()
+    });
+  }
+
+  var d = new Date();
+  function iso(day) {
+    var x = new Date(d.getFullYear(), d.getMonth(), day);
+    return x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0') + '-' + String(x.getDate()).padStart(2, '0');
+  }
+  var day = d.getDate();
+
+  add('income', 3200, iso(day - 1), 'i-salary', null, 'Monthly salary');
+  add('expense', 15.5, iso(day - 1), 'c-food', 'p-self', 'Lunch');
+  add('expense', 86.4, iso(day - 2), 'c-shop', 'p-family', 'Groceries');
+  add('expense', 42, iso(day - 2), 'c-transport', 'p-self', 'Fuel');
+  add('expense', 120, iso(day - 3), 'c-bills', 'p-home', 'Electricity bill');
+  add('income', 260, iso(day - 3), 'i-free', null, 'Design work');
+  add('expense', 28, iso(day - 4), 'c-fun', 'p-family', 'Cinema');
+  add('expense', 63.9, iso(day - 5), 'c-health', 'p-self', 'Pharmacy');
+  add('expense', 37.5, iso(day - 6), 'c-food', 'p-home', 'Groceries');
+  add('expense', 54, iso(day - 7), 'c-shop', 'p-family', 'New shoes');
+  add('income', 150, iso(day - 8), 'i-gift', null, 'Birthday gift');
+  add('expense', 19.9, iso(day - 9), 'c-transport', 'p-self', 'Ride');
+  add('expense', 210, iso(day - 10), 'c-bills', 'p-home', 'Internet');
+  add('expense', 31.25, iso(day - 11), 'c-food', 'p-family', 'Weekend brunch');
+  add('expense', 45.75, iso(day - 12), 'c-other', 'p-self', 'Stationery');
+
+  function seedData() {
+    try {
+      var w2 = f.contentWindow;
+      w2.localStorage.setItem('cashtracker.v1', JSON.stringify(DEMO));
+      w2.location.hash = route;
+      w2.location.reload();
+    } catch (e) { console.error(e); }
+  }
+
+  var seeded = false;
+  f.addEventListener('load', function () {
+    if (seed && !seeded) {
+      seeded = true;
+      try { f.contentWindow.localStorage.setItem('cashtracker.v1', JSON.stringify(DEMO)); f.contentWindow.location.reload(); }
+      catch (e) { console.error(e); }
+      return;
+    }
+    document.title = 'ready';
+  });
+</script>
+</body>
+</html>

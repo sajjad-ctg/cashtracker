@@ -43,6 +43,7 @@ jobs:
           cp dist/cashtracker.html site/index.html
           cp src/pwa/manifest.webmanifest site/manifest.webmanifest
           cp src/pwa/sw.js site/sw.js
+          cp src/pwa/privacy.html site/privacy.html
           cp assets/pwa/icon-192.png assets/pwa/icon-512.png site/
 
       - uses: actions/configure-pages@v5

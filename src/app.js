@@ -737,7 +737,9 @@
       '</div></details>' +
       '</div></div>' +
 
-      '<div class="credit">Cash Tracker &mdash; Fully Offline &mdash; by MSKCTG</div>';
+      '<div class="credit">Cash Tracker &mdash; Fully Offline &mdash; by MSKCTG' +
+      '<br><a href="https://sajjad-ctg.github.io/cashtracker/privacy.html" target="_blank" rel="noopener">Privacy policy</a>' +
+      ' &middot; <a href="https://github.com/sajjad-ctg/cashtracker" target="_blank" rel="noopener">Source code</a></div>';
   }
 
   /* ------------------------------------------------------------------ *
