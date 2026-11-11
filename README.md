@@ -289,11 +289,16 @@ The repository is source-only: **no build output, no toolchain, no signing keys*
 
 ### Publishing a release
 
-```bash
+Run these as **separate commands** (Windows PowerShell 5.1 has no `&&`):
+
+```powershell
 npm run release -- --versionCode 2 --versionName 1.1.0   # signed APK + AAB (local)
-git tag v1.1.0
+git tag -a v1.1.0 -m "Cash Tracker v1.1.0"
 git push origin main --tags                                # CI attaches the debug APK + HTML
 ```
+
+> In PowerShell 7+ you can chain them with `&&`. In PowerShell 5.1 (Windows default) `&&`
+> is a syntax error — run the lines one at a time.
 
 Then upload `dist/cashtracker-release.aab` to the Play Console.
 
