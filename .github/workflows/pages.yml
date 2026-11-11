@@ -46,6 +46,8 @@ jobs:
           cp assets/pwa/icon-192.png assets/pwa/icon-512.png site/
 
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
