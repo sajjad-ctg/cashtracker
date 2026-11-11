@@ -1,0 +1,42 @@
+# build output
+dist/
+www/
+site/
+assets/
+/cashtracker.html
+node_modules/
+
+# project-local toolchain (JDK, Android SDK, Gradle cache) – ~1.8 GB, delete to reclaim
+tools/jdk-*/
+tools/android-sdk/
+tools/gradle-home/
+tools/downloads/
+
+# release signing - NEVER commit these
+android/keystore.properties
+android/keystore/
+
+# release output folder (contains the upload key!)
+Output Playstore/
+assets/
+
+# editor / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# android build artefacts
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/capacitor-cordova-android-plugins/
+android/app/capacitor.build.gradle
+android/app/src/main/res/xml/config.xml
+
+.DS_Store
+*.log

@@ -1,0 +1,8 @@
+# normalise line endings: keep LF in the repo, checkout as LF everywhere
+* text=auto eol=lf
+*.bat text eol=crlf
+*.jks binary
+*.keystore binary
+*.png binary
+*.apk binary
+*.aab binary

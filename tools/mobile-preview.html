@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>viewport harness</title>
+<style>body{margin:0;background:#333}iframe{border:0;display:block;margin:0 auto}</style>
+</head>
+<body>
+<script>
+  var w = parseInt(new URLSearchParams(location.search).get('w') || '390', 10);
+  var h = parseInt(new URLSearchParams(location.search).get('h') || '844', 10);
+  var f = document.createElement('iframe');
+  f.id = 'f';
+  f.width = w; f.height = h;
+  f.src = '/dist/cashtracker.html';
+  document.body.appendChild(f);
+</script>
+</body>
+</html>
