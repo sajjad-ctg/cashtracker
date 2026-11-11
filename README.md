@@ -1,6 +1,46 @@
 ---
 
-## Publishing to Google Play (signed APK + AAB)
+## Keeping it on GitHub
+
+The repository is source-only: **no build output, no toolchain, no signing keys**.
+
+| What | Where it lives |
+|---|---|
+| Source, workflows, docs | the git repo |
+| `cashtracker.html`, the APK/AAB | **GitHub Releases** (attached by the workflow) |
+| The upload keystore + passwords | your password manager / encrypted drive — **never** in git |
+
+`.gitignore` excludes `android/keystore/`, `android/keystore.properties`,
+`Output Playstore/`, `tools/` (the 1.9 GB toolchain), `node_modules/`,
+`dist/`, `www/` and `site/`.
+
+### Workflows
+
+| Workflow | Trigger | What it does |
+|---|---|---|
+| `apk.yml` | every push to `main` | builds the **debug** APK (no secrets needed) and uploads it as a workflow artefact |
+| `apk.yml` | tag `v1.2.3` | attaches the debug APK **and** `cashtracker.html` to a GitHub Release |
+| `pages.yml` | every push to `main` | builds the web app and deploys it to **GitHub Pages** (PWA: installable + offline) |
+
+### Publishing a release
+
+```bash
+npm run release -- --versionCode 2 --versionName 1.1.0   # signed APK + AAB (local)
+git tag v1.1.0
+git push origin main --tags                                # CI attaches the debug APK + HTML
+```
+
+Then upload `dist/cashtracker-release.aab` to the Play Console.
+
+### Notes
+
+- **CI does not sign releases.** The upload key would have to live in GitHub
+  Secrets, and a leaked secret means someone can push an update to your app.
+  Build the signed artefact locally instead.
+- The Pages build and the APK keep **separate data** (`localStorage` is
+  per-origin). Use the JSON backup export to move data between them.
+- Enable Pages for the repo: *Settings → Pages → Source: GitHub Actions*.
+
 
 Everything below runs with the **project-local** toolchain — no Android Studio needed.
 

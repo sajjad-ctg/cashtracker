@@ -55,19 +55,23 @@ jobs:
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
 
-      # On a v* tag the debug APK is attached to the GitHub release.
-      # The signed release build (npm run release) is done locally so the
-      # upload key never has to live in GitHub.
-      - name: Attach APK to the release
+      # On a v* tag the debug APK and the single-file web app are attached to
+      # the GitHub release. The signed release build (npm run release) is done
+      # locally so the upload key never has to live in GitHub.
+      - name: Attach artefacts to the release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: android/app/build/outputs/apk/debug/app-debug.apk
+          files: |
+            android/app/build/outputs/apk/debug/app-debug.apk
+            dist/cashtracker.html
           body: |
-            Cash Tracker ${{ github.ref_name }} (debug build)
+            Cash Tracker ${{ github.ref_name }}
 
-            Install: `adb install -r cashtracker-debug.apk`
-            Or copy the APK to the phone and open it (allow "install unknown apps").
+            * `cashtracker-debug.apk` – install with `adb install -r cashtracker-debug.apk`
+              or copy it to the phone and open it (allow "install unknown apps").
+            * `cashtracker.html` – the whole app in one file. Open it in any
+              browser, or serve it for offline use with a service worker.
 
             The signed release for Google Play is built locally with
             `npm run release -- --versionCode N --versionName X.Y.Z`
