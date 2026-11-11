@@ -110,11 +110,14 @@ The app has no analytics, no ads and no crash reporting. It makes no network req
 
 ## 7. Release
 
+The ready-to-upload bundle is **`dist/cashtracker-release.aab`**
+(versionCode `2`, versionName `1.1.0`, signed with your upload key).
+
 1. **Upload** `dist/cashtracker-release.aab` (Release → Testing → Create new release).
 2. Roll out to **Internal testing** first and install from the Play link.
 3. New personal developer accounts need a **closed test with 12 testers for 14 days**
    before production is possible.
-4. When you publish a new version: `npm run release -- --versionCode 2 --versionName 1.1.0`
+4. When you publish a new version: `npm run release -- --versionCode 3 --versionName 1.2.0`
    and upload the new `.aab`. The versionCode must always increase.
 
 ## 8. Regenerating the assets
